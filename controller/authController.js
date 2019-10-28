@@ -45,7 +45,6 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 
   const url = `${req.protocol}://${req.get('host')}/me`;
-  console.log(url);
   await new Email(newUser, 201, res).sendWelcome();
   createSendToken(newUser, 201, res);
 });
@@ -170,8 +169,6 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   const resetToken = user.createPasswordResetToken();
   await user.save({ validateBeforeSave: false });
 
-  console.log(resetToken);
-
   //3) Send it to user's email
 
   try {
@@ -242,14 +239,12 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   user.password = req.body.password;
   user.passwordConfirm = req.body.passwordconfirm;
   await user.save();
-  console.log(user.email);
 
   // //4) Log user in, send JWT
   createSendToken(user, 200, res);
 
   // const token = req.headers.authorization.split(' ')[1];
   // const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  // console.log(decoded);
 
   // let user = await User.findById(decoded.id);
   // if (!user) {

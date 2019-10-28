@@ -82,7 +82,6 @@ exports.aliasTopTours = (req, res, next) => {
 //Advanced Filtering
 // let queryStr = JSON.stringify(queryObj);
 // queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
-// console.log(JSON.parse(queryStr));
 
 // let query = Tour.find(JSON.parse(queryStr));
 
@@ -223,8 +222,6 @@ exports.getTourWithin = catchAsync(async (req, res, next) => {
   const tours = await Tour.find({
     startLocation: { $geoWithin: { $centerSphere: [[lng, lat], radius] } }
   });
-
-  console.log(radius);
   res.status(200).json({
     status: 'success',
     result: tours.length,
