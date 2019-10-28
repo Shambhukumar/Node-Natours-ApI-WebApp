@@ -15,7 +15,7 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
 const viewRouter = require('./routes/viewRoutes');
-
+//Starting the Express file
 const app = express();
 
 //Global MIDDELWARE
