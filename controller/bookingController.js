@@ -8,8 +8,6 @@ const Booking = require('./../models/bookingModel');
 
 const catchAsync = require('./../utils/catchAsync');
 
-const AppError = require('./../utils/appError');
-
 const factory = require('./handlerFactory');
 
 exports.getCheckoutSeassion = catchAsync(async (req, res, next) => {
@@ -60,6 +58,13 @@ const createBookingCheckout = async session => {
   const price = session.display_items[0].amount / 100;
   await Booking.create({ tour, user, price });
 };
+
+exports.check = (req, res, next) => {
+  console.log(
+    'THis is working !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+  );
+  next();
+};
 exports.webhookCheckout = (req, res, next) => {
   const signature = req.headers['stripe-signature'];
 
@@ -71,7 +76,7 @@ exports.webhookCheckout = (req, res, next) => {
       process.env.STRIPE_WEBHOOK_SECRET
     );
   } catch (err) {
-    return res.status(400).send(`Webhook error: ${err.message} `);
+    return res.status(400).send(`Webhook error: ${err.message}`);
   }
   if (event.type === 'checkout.session.completed')
     createBookingCheckout(event.data.object);

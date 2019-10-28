@@ -44,6 +44,7 @@ app.use('/api', limiter);
 app.post(
   '/webhoot-checkout',
   bodyParser.raw({ type: 'application/json' }),
+  bookingController.check,
   bookingController.webhookCheckout
 );
 
