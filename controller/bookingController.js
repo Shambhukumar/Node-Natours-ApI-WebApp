@@ -70,6 +70,7 @@ exports.webhookCheckout = (req, res, next) => {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET
     );
+    alert('this is working');
   } catch (err) {
     return res.status(400).send(`Webhook error: ${err.message} `);
   }
