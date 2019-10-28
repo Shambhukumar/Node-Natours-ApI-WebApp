@@ -18,6 +18,7 @@ const bookingRouter = require('./routes/bookingRoutes');
 const viewRouter = require('./routes/viewRoutes');
 //Starting the Express file
 const app = express();
+app.enable('trust proxy');
 
 //Global MIDDELWARE
 app.set('view engine', 'pug');
