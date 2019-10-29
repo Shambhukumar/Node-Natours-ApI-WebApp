@@ -44,6 +44,12 @@ exports.signin = async (req, res, next) => {
   });
 };
 
+exports.signUp = async (req, res, next) => {
+  res.status(201).render('signup', {
+    title: `Sign Up`
+  });
+};
+
 exports.getMyTours = catchAsync(async (req, res, next) => {
   //1) Find all bookings
   const bookings = await Booking.find({ user: req.user.id });
