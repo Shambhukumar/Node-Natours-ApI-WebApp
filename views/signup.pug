@@ -6,13 +6,15 @@ block content
 			h2.heading-secondary.ma-bt-lg Sign Up To Create Your Account
 			form.form.signUpforom
 				.form__group
+					label.form__label(for='text') Name
+					input#name.form__input(type='text', placeholder='Your Name ', required)
 					label.form__label(for='email') Email address
 					input#email.form__input(type='email', placeholder='you@example.com', required)
 				.form__group.ma-bt-md
 					label.form__label(for='password') Password
 					input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
-                .form__group.ma-bt-md
-                    label.form__label(for='passwordConfirm') Confirm Password
-                    input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+				.form__group.mg-bt-md
+					label.form__label(for='password') Confirm Password
+					input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
 				.form__group
 					button.btn.btn--green Sign Up

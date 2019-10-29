@@ -5,6 +5,7 @@ import { login, logout } from './login';
 import { updateUserData } from './updateSettings';
 import { bookTour } from './stripe';
 import { showAlert } from './alerts';
+import { signup } from './signup';
 
 //DOM
 const mapBox = document.getElementById('map');
@@ -13,6 +14,7 @@ const userForm = document.querySelector('.form-user-data');
 const logOutBtn = document.querySelector('.nav__el--logout');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
+const signUpForm = document.querySelector('.signUpforom');
 
 //DELEGATION
 if (mapBox) {
@@ -68,3 +70,14 @@ if (bookBtn)
 
 const alertMessage = document.querySelector('body').dataset.alert;
 if (alertMessage) showAlert('success', alertMessage, 20);
+
+if (signUpForm) {
+  signUpForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('password-confirm').value;
+    signup(name, email, password, confirmPassword);
+  });
+}
